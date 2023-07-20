@@ -1,0 +1,154 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: teal;
+}
+
+div#content {
+    height: 100%;
+}
+
+div.container {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(250, 250, 250);
+
+    display: grid;
+    grid-template-columns: 1fr, 7fr;
+    grid-template-rows: 1fr, 8fr;
+}
+
+
+div.sidebar{
+    background-color: rgb(220, 220, 220);
+
+    grid-column: 1;
+    grid-row: 2/40;
+    
+    padding: 3rem;
+    padding-top: 1.3rem;
+    padding-right: 1.3rem;
+}
+
+div.header{
+    background-color: rgb(33, 33, 33);
+    /* background-color: green; */
+    grid-column: 1/12;
+    grid-row: 1;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 12px;   
+}
+
+div.header-text {
+    color: white;
+    padding-right: 12px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+div.main{
+    grid-column: 2/12;
+    grid-row: 2/40;
+}
+
+h2.nav-header {
+    margin-bottom: 0.5rem;
+}
+
+button.nav-header {
+    background-color: rgb(220, 220, 220);
+    background-color: none;
+    margin-bottom: 0.3rem;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    border-style: none;
+
+    width: 100%;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+
+div.nav-item{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+button {
+    cursor: pointer;
+}
+
+button.group-category{
+    background-color: rgb(220, 220, 220);
+    font-size: 1.3rem;
+    padding-left: 1.3rem; 
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    font-weight: 600;
+
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    text-align: left;
+
+    font-weight: 600;
+
+    border-style: none;
+
+    width: 100%;
+}
+
+button.add-group{
+    background-color: rgb(220, 220, 220);
+    font-size: 1.3rem;
+    padding-left: 0.3rem; 
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    text-align: left;
+
+    font-weight: 100;
+
+    border-style: none;
+}
+
+
+div.list-container{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+
+}
+
+li.todo {
+    background-color: rgb(220, 220, 220);
+    padding: 1rem;
+    margin: 1.3rem;
+    margin-top: 0.3rem;
+    font-size: 1.3rem;
+
+    list-style-type: none;
+}
+
+ul {
+    padding-left: 0.3rem;
+}
+
+div.navigation button:hover {
+    background-color:rgb(200, 200, 200);
+}
