@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0px;
     padding: 0px;
     font-size: 16px;
@@ -7,15 +8,17 @@ html, body {
 }
 
 body {
-    background-color: teal;
+    /* background-color: teal; */
 }
 
 div#content {
     height: 100%;
+    width: 100%;
 }
 
 div.container {
     height: 100%;
+    width: 100%;
     margin: 0px;
     padding: 0px;
     background-color: rgb(250, 250, 250);
@@ -47,6 +50,7 @@ div.header{
     justify-content: left;
     align-items: center;
     padding: 12px;   
+    /* padding-right: 0px; */
 }
 
 div.header-text {
@@ -57,6 +61,7 @@ div.header-text {
 }
 
 div.main{
+    width: 100%;
     grid-column: 2/12;
     grid-row: 2/40;
 }
@@ -76,7 +81,7 @@ button.nav-header {
 
     border-style: none;
 
-    width: 100%;
+    /* width: 100%; */
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
 }
@@ -132,11 +137,13 @@ div.list-container{
     padding-right: 1rem;
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
+    /* width: 100%; */
 }
 
 li.todo {
     background-color: rgb(220, 220, 220);
     padding: 1rem;
+    padding-right: 0rem;
 
     margin-top: 0.6rem;
     font-size: 1.3rem;
@@ -211,4 +218,135 @@ image.todo-button{
     width: 12rem;
     border-style: none;
     background-color: none;
+}
+
+div.overlay {
+    position: fixed;
+    background: #999;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 100;
+
+    display: none;
+    justify-content: center;
+    padding-top: 10%;
+}
+
+div.new-group-popup{
+    position: fixed;
+    background: white;
+    justify-self: center;
+
+    z-index: 100;
+
+    display: flex;
+    margin-top: 10%;
+
+    padding: 1.3rem;
+
+    align-items: top;
+    width: 80%;
+    max-width: 30rem;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.group-inputs {
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom: 20rem; */
+}
+
+button#group-submit-button {
+    margin-top: 1rem;
+
+    align-self: end;
+}
+
+.group-form-close-button {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+
+    content: 'X';
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    border-style: none ;
+    background-color:rgba(0, 0, 0, 0);    
+
+    color: gray;
+}
+
+.group-form-close-button:hover {
+    color: black;
+}
+
+div.new-todo-popup{
+    position: fixed;
+    background: white;
+    justify-self: center;
+
+    z-index: 100;
+
+    display: flex;
+    margin-top: 10%;
+
+    padding: 1.3rem;
+
+    align-items: top;
+    width: 80%;
+    max-width: 30rem;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.todo-inputs {
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom: 20rem; */
+}
+
+button#todo-submit-button {
+    margin-top: 1rem;
+
+    align-self: end;
+}
+
+.todo-form-close-button {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+
+    content: 'X';
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    border-style: none ;
+    background-color:rgba(0, 0, 0, 0);    
+
+    color: gray;
+}
+
+.todo-form-close-button:hover {
+    color: black;
+}
+
+.form-row {
+    display: flex;
+    width: 300px;
+
+    justify-content: space-between;
+    padding-bottom: 16px;
 }

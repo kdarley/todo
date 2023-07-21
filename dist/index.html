@@ -11,6 +11,37 @@
 <body>
     <div id="content">
         <div class="container">
+            <div class="overlay"></div>
+            <div class="new-group-popup">
+                <button class="group-form-close-button">X</button>
+                <h2 class="form-header">Create New Group</h2>
+                <form action="" method="post" class="add-group-form">
+                    <div class="group-inputs">
+                        <div class="group-name-container">
+                            <label for="group-name">Group Name</label>
+                            <input type="text" id="group-name" name="group-name">
+                        </div>
+                        <button id="group-submit-button">Create</button>
+                    </div>
+                </form>
+            </div>
+            <div class="new-todo-popup">
+                <button class="todo-form-close-button">X</button>
+                <h2 class="form-header">Create Todo</h2>
+                <form action="" method="post" class="add-todo-form">
+                    <div class="todo-inputs">
+                        <div class="form-row todo-name-container">
+                            <label for="todo-name">Description</label>
+                            <input type="text" id="todo-name" name="todo-name">
+                        </div>
+                        <div class="form-row due-date">
+                            <label for="due-date">due date</label>
+                            <input type="date" id="due-date" name="due-date">
+                        </div>
+                        <button id="todo-submit-button">Create</button>
+                    </div>
+                </form>
+            </div>
             <div class="header">
                 <div class="header-text">TODO @</div>
                 <image class="header-logo" src="images/darley-logo-white.svg" alt="darley logo"></image>
