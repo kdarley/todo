@@ -47,18 +47,6 @@ const board = (() => {
 
     let projectDictionary = {}
 
-    // function getAvailableIndex(projectName){
-    //     let project = projectDictionary[projectName]
-
-    //     let count = 0;
-
-    //     for (let _todo in project) {
-    //         ++count;
-    //     }
-    //     return count
-    //     // console.log(projectName, project, count)
-    // }
-
     const getAvailableIndex = (projectName) => {
         let project = projectDictionary[projectName]
 
@@ -68,29 +56,7 @@ const board = (() => {
             ++count;
         }
         return count
-        // console.log(projectName, project, count)
     }
-
-    // function shiftIndexAfterDelete(projectName, deletedIndex){
-    //     let project = projectDictionary[projectName]
-    //     let lastIndex = getAvailableIndex(projectName)
-
-    //     // if there's only one project, do nothing
-    //     if (lastIndex == deletedIndex){
-    //         return
-    //     };
-
-    //     // shift the indeces
-    //     for (let i = deletedIndex; i<lastIndex; i++){
-    //         let nextIndex = i+1;
-    //         project[i] = project[nextIndex];
-
-    //         // delete the last index which has been reassigned
-    //         if (nextIndex == lastIndex){
-    //             deleteTodo(projectName, lastIndex)  
-    //         }
-    //     } 
-    // }
 
     const shiftIndexAfterDelete = (projectName, deletedIndex) => {
         let project = projectDictionary[projectName]
@@ -113,26 +79,12 @@ const board = (() => {
         } 
     }
 
-    // function deleteTodo(projectName, index){
-    //     let project = projectDictionary[projectName]
-
-    //     delete(project[index])
-    //     shiftIndexAfterDelete(projectName, index)
-    // }
-
     const deleteTodo = (projectName, index) => {
         let project = projectDictionary[projectName]
 
         delete(project[index])
         shiftIndexAfterDelete(projectName, index)
     }
-
-    // function addTodo(projectName, description, dueDate, priority) {
-    //     // get last index of todo
-    //     let todo = new Todo(description, dueDate, priority)
-
-    //     projectDictionary[projectName][getAvailableIndex(projectName)] = todo;
-    // }
 
     const addTodo = (projectName, description, dueDate, priority) => {
         // get last index of todo
@@ -141,22 +93,11 @@ const board = (() => {
         projectDictionary[projectName][getAvailableIndex(projectName)] = todo;
     };
 
-
-    // function addProject(projectName){
-    //     console.log(projectDictionary)
-    //     projectDictionary[projectName] = {};
-    //     console.log(projectDictionary)
-    // }
-
     const addProject = (projectName) => {
         console.log(projectDictionary)
         projectDictionary[projectName] = {};
         console.log(projectDictionary)
     };
-
-    // function deleteProject(projectName){
-    //     delete(projectDictionary[projectName])
-    // }
 
     const deleteProject = (projectName) => {
         delete(projectDictionary[projectName])
@@ -172,44 +113,74 @@ const board = (() => {
     
 })();
 
-board.addProject("myfirstproject")
-console.log(board.projectDictionary)
-board.addTodo("myfirstproject", "a", "b", "c")
-console.log(board.projectDictionary)
-board.deleteTodo("myfirstproject", 0)
-console.log(board.projectDictionary)
+board.addProject("Work")
+board.addProject("Grocery")
+board.addProject("Household")
 
-// addProject("huh?")
+function removeSidebarGroups(){
+    let sidebarGroups = document.querySelectorAll("button.group-category")
+    sidebarGroups.forEach(group => {
+        group.remove();
+    });
+}
 
-// addTodo("huh?","a","b","c")
-// addTodo("huh?","a1","b1","c1")
-// addTodo("huh?","a2","b2","c2")
-// addTodo("huh?","a3","b3","c3")
-// addTodo("huh?","a4","b4","c4")
-// addTodo("huh?","a5","b5","c5")
+function displayGroups(){
+    removeSidebarGroups();
+    let groups = board.projectDictionary
+    let addGroup = document.querySelector("button.add-group")
+    let groupSidebarContainer = document.querySelector("div.groups")
+    for (let group in groups){
+        console.log(group)
+        let sidebarGroup = document.createElement("button")
+        sidebarGroup.classList.add("group-category")
+        sidebarGroup.textContent = group
 
-// deleteProject("huh?")
-// deleteProject("all")
+        groupSidebarContainer.insertBefore(sidebarGroup, addGroup)
+    }
+};
 
-// addProject("huh?")
+displayGroups();
 
-// addTodo("huh?","a","b","c")
-// addTodo("huh?","a1","b1","c1")
-// addTodo("huh?","a2","b2","c2")
-// addTodo("huh?","a3","b3","c3")
-// addTodo("huh?","a4","b4","c4")
-// addTodo("huh?","a5","b5","c5")
+function newGroupListener(){
+    // dom objects
+    const newGroupButton = document.querySelector("button.add-group")
+    const overlay = document.querySelector("div.overlay")
+    const newGroupPopup = document.querySelector("div.new-group-popup")
+    const closeGroupFormButton = document.querySelector("button.group-form-close-button")
+    const submitGroupFormButton = document.querySelector("button#group-submit-button")
+    
+    // sidebar + New Group click
+    newGroupButton.addEventListener('click', () => {
+        overlay.addEventListener('click', () => {
+            overlay.style.display = "none"
+            newGroupPopup.style.display = "none"
+        })
+        overlay.style.display = "flex"
+        newGroupPopup.style.display = "flex"
+    })
+    
+    // close popup form on X click
+    closeGroupFormButton.addEventListener('click', () => {
+        overlay.style.display = "none"
+        newGroupPopup.style.display = "none"
+    })
 
-// deleteTodo("huh?", 4)
+    // handle on submit button click
+    submitGroupFormButton.addEventListener("click", submitGroupClick, false)
+    // alternative behavior function
+    function submitGroupClick(event){
+        event.preventDefault();
+        let groupName = document.getElementById("group-name").value
 
-// addTodo("all","a","b","c")
-// addTodo("all","a1","b1","c1")
-// addTodo("all","a2","b2","c2")
-// addTodo("all","a3","b3","c3")
-// addTodo("all","a4","b4","c4")
-// addTodo("all","a5","b5","c5")
+        overlay.style.display = "none"
+        newGroupPopup.style.display = "none"
 
+        board.addProject(groupName)
 
-// deleteTodo("all", 1)
-// deleteTodo("all", 0)
-// deleteTodo("all", 3)
+        document.getElementById("group-name").value = null
+
+        displayGroups();
+    }
+}
+
+newGroupListener()
