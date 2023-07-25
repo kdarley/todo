@@ -49,13 +49,16 @@ div.header{
     display: flex;
     justify-content: left;
     align-items: center;
-    padding: 12px;   
+    /* padding: 12px;   */
+    padding-top:12px;
+    padding-bottom: 12px; 
     /* padding-right: 0px; */
 }
 
 div.header-text {
     color: white;
-    padding-right: 12px;
+    padding-right: 1.3rem;
+    padding-left: 3rem;
     font-size: 28px;
     font-weight: 600;
 }
