@@ -8,7 +8,7 @@
 //     } 
 // }
 
-const board = (() => {
+const createBoard = (() => {
     class Todo {
         constructor(description, dueDate, priority){
             this.description = description;
@@ -55,35 +55,35 @@ const board = (() => {
         for (let _todo in project) {
             ++count;
         }
+
         return count
     }
 
-    const shiftIndexAfterDelete = (projectName, deletedIndex) => {
+    const resetIndeces = (projectName) => {
         let project = projectDictionary[projectName]
-        let lastIndex = getAvailableIndex(projectName)
 
-        // if there's only one project, do nothing
-        if (lastIndex == deletedIndex){
-            return
-        };
+        let start = 0
 
-        // shift the indeces
-        for (let i = deletedIndex; i<lastIndex; i++){
-            let nextIndex = i+1;
-            project[i] = project[nextIndex];
+        console.log("one",project)
+        for (let todo in project){
+            console.log("todo", todo)
+            console.log(project[todo])
+            console.log(project[start])
+            project[start] = project[todo]
+            start++
+        }
 
-            // delete the last index which has been reassigned
-            if (nextIndex == lastIndex){
-                deleteTodo(projectName, lastIndex)  
-            }
-        } 
+        delete(project[start++])
+
+        console.log("two",project)
     }
 
     const deleteTodo = (projectName, index) => {
         let project = projectDictionary[projectName]
 
         delete(project[index])
-        shiftIndexAfterDelete(projectName, index)
+        // shiftIndexAfterDelete(projectName, index)
+        resetIndeces(projectName);
     }
 
     const addTodo = (projectName, description, dueDate, priority) => {
@@ -112,5 +112,7 @@ const board = (() => {
     }
     
 })();
+
+const board = createBoard;
 
 export {board}

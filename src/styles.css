@@ -185,20 +185,23 @@ div.priority.low{
     background-color: rgb(15, 110, 20);
 }
 
-/* li.todo.high{
-    border: solid;
+li.todo.high{
+    border-bottom: solid;
+    /* border: solid; */
     border-color: rgb(170, 20, 20);
 }
 
 li.todo.medium{
-    border: solid;
+    border-bottom: solid;
+    /* border: solid; */
     border-color: rgb(170, 145, 20);
 }
 
 li.todo.low{
-    border: solid;
+    border-bottom: solid;
+    /* border: solid; */
     border-color: rgb(15, 110, 20);
-} */
+}
 
 div.todo-right{
     display: flex;

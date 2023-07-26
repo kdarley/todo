@@ -58,8 +58,6 @@ function displayTodos(group){
     let projectContainer = document.querySelector("ul.todo-container")
     let project = board.projectDictionary[group]
 
-    console.log(project)
-
     for (let todo in project){
         let description = project[todo]["_description"]
         let dueDate = project[todo]["_dueDate"]
@@ -101,6 +99,15 @@ function displayTodos(group){
 
         let todoDelete = document.createElement("button")
         todoDelete.classList.add("delete-button")
+        todoDelete.addEventListener('click', () => {
+            console.log("project", group),
+            console.log("index", todo),
+            board.deleteTodo(group, todo),
+            // delete(board.projectDictionary[group][todo]),
+            console.log(board.projectDictionary[group])
+            displayTodos(group);
+
+        })
         let todoDeleteImage = document.createElement("img")
         todoDeleteImage.classList.add("todo-button")
         todoDeleteImage.classList.add("delete")
@@ -114,10 +121,7 @@ function displayTodos(group){
 
         todoItem.appendChild(todoRight)
 
-        console.log(todoItem)
-
         projectContainer.appendChild(todoItem)
-        // projectContainer.appendChild(todoRight)
     }
 }
 
