@@ -16,7 +16,6 @@ function displayGroups(){
     let addGroup = document.querySelector("button.add-group") // we use this as a target to insert before
     let groupSidebarContainer = document.querySelector("div.groups")
     for (let group in groups){
-        console.log(group)
         let sidebarGroup = document.createElement("button")
         sidebarGroup.classList.add("group-category")
         sidebarGroup.classList.add("unique_"+group)
@@ -79,7 +78,6 @@ function newGroupListener(){
 
         // check if the groupname exists
         const groups = document.querySelectorAll("button.group-category")
-        console.log("classList", groups)
 
         let cont = true
         groups.forEach(group => {

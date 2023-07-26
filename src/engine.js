@@ -64,18 +64,12 @@ const createBoard = (() => {
 
         let start = 0
 
-        console.log("one",project)
         for (let todo in project){
-            console.log("todo", todo)
-            console.log(project[todo])
-            console.log(project[start])
             project[start] = project[todo]
             start++
         }
 
         delete(project[start++])
-
-        console.log("two",project)
     }
 
     const deleteTodo = (projectName, index) => {
@@ -94,9 +88,7 @@ const createBoard = (() => {
     };
 
     const addProject = (projectName) => {
-        console.log(projectDictionary)
         projectDictionary[projectName] = {};
-        console.log(projectDictionary)
     };
 
     const deleteProject = (projectName) => {

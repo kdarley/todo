@@ -166,6 +166,23 @@ li.todo {
     justify-content: space-between;
 }
 
+li.todo.strike {
+    position: relative;
+}
+
+li.todo.strike:after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 3px;
+  background: #c00;
+  content: "";
+  width: 100%;
+  display: block;
+  /* margin-right: 1.3rem; */
+  /* margin-left: 9%; */
+}
+
 div.priority{
     width: 1rem;
     height: 1rem;
@@ -333,7 +350,7 @@ button#group-submit-button {
     color: black;
 }
 
-div.new-todo-popup{
+div.new-todo-popup, div.edit-todo-popup{
     position: fixed;
     background: white;
     justify-self: center;
@@ -354,19 +371,19 @@ div.new-todo-popup{
     align-items: center;
 }
 
-div.todo-inputs {
+div.todo-inputs, div.edit-todo-inputs {
     display: flex;
     flex-direction: column;
     /* padding-bottom: 20rem; */
 }
 
-button#todo-submit-button {
+button#todo-submit-button, button#edit-todo-submit-button {
     margin-top: 1rem;
 
     align-self: end;
 }
 
-.todo-form-close-button {
+.todo-form-close-button, .edit-todo-form-close-button  {
     position: absolute;
     top: 0%;
     right: 0%;

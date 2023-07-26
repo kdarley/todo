@@ -33,11 +33,12 @@ function newTodoListener(){
         event.preventDefault();
         let todoName = document.getElementById("todo-name").value
         let dueDate = document.getElementById("due-date").value
+        let priority = document.getElementById("priority").value
 
         overlay.style.display = "none"
         newTodoPopup.style.display = "none"
 
-        board.addTodo(activeGroup, todoName, dueDate, "high")
+        board.addTodo(activeGroup, todoName, dueDate, priority)
 
         document.getElementById("todo-name").value = null
         document.getElementById("due-date").value = null
@@ -52,6 +53,61 @@ function removeDisplayedTodos(){
         todo.remove();
     });
 };
+
+function strikeThroughOnCheckbox(todoObject){
+    if (todoObject.classList.contains("strike")){
+        todoObject.classList.remove("strike")
+    } else {
+        todoObject.classList.add("strike")
+    }
+}
+
+function editTodoListener(buttonObject, description, dueDate, priority, todo){
+    const overlay = document.querySelector("div.overlay")
+    const editTodoPopup = document.querySelector("div.edit-todo-popup")
+    const closeEditTodoFormButton = document.querySelector("button.edit-todo-form-close-button")
+    const submitEditTodoFormButton = document.querySelector("button#edit-todo-submit-button")
+
+    const formTodoName = document.getElementById("edit-todo-name")
+    const formDueDate = document.getElementById("edit-due-date")
+    const formPriority = document.getElementById("edit-form-priority")
+
+    formTodoName.value = description
+    formDueDate.value = dueDate
+    formPriority.value=priority
+
+    buttonObject.addEventListener('click', () => {
+        overlay.addEventListener('click', () => {
+            overlay.style.display="none"
+            editTodoPopup.style.display="none"
+        })
+        overlay.style.display = "flex"
+        editTodoPopup.style.display = "flex"
+    })
+
+    // close popup form on X click
+    closeEditTodoFormButton.addEventListener('click', () => {
+        overlay.style.display = "none"
+        editTodoPopup.style.display = "none"
+    })
+
+    submitEditTodoFormButton.addEventListener("click", submitTodoClick, false)
+
+    function submitTodoClick(event){
+        event.preventDefault();
+
+        board.projectDictionary[activeGroup][todo]["_description"] = formTodoName.value
+        board.projectDictionary[activeGroup][todo]["_dueDate"] = formDueDate.value
+        board.projectDictionary[activeGroup][todo]["_priority"] = formPriority.value
+
+        overlay.style.display = "none"
+        editTodoPopup.style.display = "none"
+
+        displayTodos(activeGroup);
+    }
+
+
+}
 
 function displayTodos(group){
     removeDisplayedTodos();
@@ -71,10 +127,15 @@ function displayTodos(group){
         let todoLeft = document.createElement("div")
         todoLeft.classList.add("todo-left")
         let todoPriority = document.createElement("div")
-        todoPriority.classList.add("priority")
+        todoPriority.classList.add("new-todo-priority")
         todoPriority.classList.add(priority)
         let todoCheckBox = document.createElement("button")
         todoCheckBox.classList.add("todo-checkbox")
+        todoCheckBox.classList.add(todo)
+        todoCheckBox.classList.add(group)
+        todoCheckBox.addEventListener('click', () => {
+            strikeThroughOnCheckbox(todoItem);
+        })
         let todoDescription = document.createElement("div")
         todoDescription.classList.add("todo-description")
         todoDescription.textContent = description
@@ -92,6 +153,10 @@ function displayTodos(group){
         todoDate.textContent = dueDate
         let todoEdit = document.createElement("button")
         todoEdit.classList.add("edit-button")
+        todoEdit.classList.add()
+        todoEdit.addEventListener('click', () => {
+            editTodoListener(todoEdit, description, dueDate, priority, todo);
+        })
         let todoEditImage = document.createElement("img")
         todoEditImage.classList.add("todo-button")
         todoEditImage.classList.add("edit")
@@ -100,11 +165,7 @@ function displayTodos(group){
         let todoDelete = document.createElement("button")
         todoDelete.classList.add("delete-button")
         todoDelete.addEventListener('click', () => {
-            console.log("project", group),
-            console.log("index", todo),
             board.deleteTodo(group, todo),
-            // delete(board.projectDictionary[group][todo]),
-            console.log(board.projectDictionary[group])
             displayTodos(group);
 
         })
