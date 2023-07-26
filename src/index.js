@@ -8,6 +8,8 @@ board.addProject("Work")
 board.addProject("Grocery")
 board.addProject("Household")
 board.addTodo("Work", "Complete todo project", "today", "high")
+board.addTodo("Work", "Send email to dad", "today", "low")
+board.addTodo("Work", "Complete capstone", "today", "medium")
 
 displayTodos("Work");
 

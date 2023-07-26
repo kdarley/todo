@@ -44,9 +44,6 @@ function newTodoListener(){
 
         displayTodos(activeGroup);
     }
-
-
-
 }
 
 function removeDisplayedTodos(){
@@ -70,14 +67,21 @@ function displayTodos(group){
 
         let todoItem = document.createElement("li")
         todoItem.classList.add("todo")
+        todoItem.classList.add(todo)
+        todoItem.classList.add(group)
+        todoItem.classList.add(priority)
         let todoLeft = document.createElement("div")
         todoLeft.classList.add("todo-left")
+        let todoPriority = document.createElement("div")
+        todoPriority.classList.add("priority")
+        todoPriority.classList.add(priority)
         let todoCheckBox = document.createElement("button")
         todoCheckBox.classList.add("todo-checkbox")
         let todoDescription = document.createElement("div")
         todoDescription.classList.add("todo-description")
         todoDescription.textContent = description
 
+        todoLeft.appendChild(todoPriority)
         todoLeft.appendChild(todoCheckBox)
         todoLeft.appendChild(todoDescription)
 
